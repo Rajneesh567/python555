@@ -1,0 +1,67 @@
+{% if prd_list %}
+<table border="1" margin="auto" align="center">
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Prd_Qnty</th>
+      <th>Prd_Price</th>
+      <th>Prd_Loc</th>
+  </tr>
+  {% for prd in prd_list %}
+    <tr>
+    <td>{{prd.id}}</td>
+    <td>{{prd.name}}</td>
+    <td>{{prd.prd_qnty}}</td>
+      <td>{{prd.prd_price}}</td>
+      <td>{{prd.prd_loc}}</td>
+    </tr>
+  {%endfor%}
+
+</table>
+{%else%}
+<h1>no data found</h1>
+
+{%endif%}
+Amit Pise12:48
+{% if prd_list %}
+<table border="1" margin="auto" align="center">
+  <tr>
+    <th>NAME</th>
+    <th>EMAIL</th>
+    <th>ACC_NO</th>
+      <th>CASH</th>
+      <th>DATE</th>
+  </tr>
+  {% for prd in prd_list %}
+    <tr>
+    <td>{{prd.id}}</td>
+    <td>{{prd.name}}</td>
+    <td>{{prd.prd_qnty}}</td>
+      <td>{{prd.prd_price}}</td>
+      <td>{{prd.prd_loc}}</td>
+    </tr>
+  {%endfor%}
+
+</table>
+{%else%}
+<h1>no data found</h1>
+
+{%endif%}
+aarti pawar12:56
+from .models import prd_details1
+
+def show(r):
+    prd_list = prd_details1.objects.all()
+    prd_dict = {'prd_list':prd_list}
+
+
+    return render(r,'connectapp/show.html',context=prd_dict)
+aarti pawar13:17
+from django.contrib import admin
+from django.urls import path
+from connectapp import views
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('show/', views.show),
+]
